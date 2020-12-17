@@ -13,19 +13,23 @@ found : ''}
  
   onFormSubmit =async (text)=>{
 
-const response = await axios.get( 'https://api.imgur.com/3/gallery/search' , {
-  params: {q_exactly: text,},
-  withCredentials: false,
+const response = await axios.get( 'https://api.unsplash.com/search/photos' , {
+  params: {query: text,
+  page: 2,
+per_page: 20},
+
   headers: {
     
-    Authorization: 'Client-ID 0862bba7eadcd3f',
+    Authorization: 'Client-ID 0y6KzMkvd0boAfn4xU2CJkXHd73amDURPySyZapsrl8',
 
   }
 })
 
-this.setState({image:response.data.data});
+this.setState({image:response.data.results});
 
-this.setState({found: `WE FOUND ${this.state.image.length} IMAGES`})
+const data = response.data
+
+this.setState({found: `WE FOUND ${data.total} IMAGES BUT WILL DISPLAY THE TOP ${data.results.length} `})
 
 // console.log(text.length)
 
@@ -43,12 +47,12 @@ this.setState({found: `WE FOUND ${this.state.image.length} IMAGES`})
 
           <Found popup = {this.state.found}/>
 
-          <Images images = {this.state.image}/>
+          
     </div>
   </div>
 </div>
 
-      
+          <Images images = {this.state.image}/> 
     
       </div>
 

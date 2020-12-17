@@ -1,16 +1,35 @@
 import React from 'react'
+import './ImageList.css'
 
-const ImageList = (props) =>{
+class ImageList extends React.Component{
+  constructor(props){
+    super(props)
+
+    this.imageRef = React.createRef()
+  }
   
-  // console.log(props.images[0].link);
-  const images= props.images.map((image)=>{
-    return <img src={image.link} alt= ''/>
-  })
-  return(
-    <div>
-{images}
-    </div>
-  )
+
+  componentDidUpdate(){
+    console.log(this.imageRef);
+  }
+  
+  
+  render(){
+    
+    const images= this.props.images.map((image)=>{
+      return( 
+          <img ref={this.imageRef} key={image.id} src={image.urls.regular} alt={image.description} />
+      )})
+      return(
+    
+        <div  className="image-list" >
+          {images}
+        </div>
+      
+    )
+  }
+  
+  
 }
 
 export default ImageList
