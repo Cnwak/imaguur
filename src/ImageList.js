@@ -19,7 +19,7 @@ class ImageList extends React.Component{
       
       console.log(images);
       return(
-        <div  className="image-list" >
+        <div style={{paddingLeft: '50px'}}  className=" container image-list" >
           {images}
         </div>
       
