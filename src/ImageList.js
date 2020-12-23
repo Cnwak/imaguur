@@ -17,7 +17,7 @@ class ImageList extends React.Component{
           <ImageCard key={image.id} image= {image}/>
       )})
       
-      console.log(images);
+      
       return(
         <div style={{paddingLeft: '50px'}}  className=" container image-list" >
           {images}
